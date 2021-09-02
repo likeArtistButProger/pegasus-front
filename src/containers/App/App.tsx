@@ -27,6 +27,10 @@ function App() {
   const [craftingBalanceX3, setCraftingBalanceX3] = useState<string>("0");
   const [craftingBalanceY, setCraftingBalanceY] = useState<string>("0");
 
+  const [inputX1, setInputX1] = useState<number>(0);
+  const [inputX2, setInputX2] = useState<number>(0);
+  const [inputX3, setInputX3] = useState<number>(0);
+
   useEffect(() => {
     if(!!library) {
       const crafting = new library.eth.Contract(CrafringAbi, CRAFTING);
@@ -68,6 +72,16 @@ function App() {
         return;
       default:
         return;        
+    }
+  }
+
+  const onDeposit = () => {
+    if(!!crafting && !!account) {
+      const x1ToSend = new BigNumber(inputX1).times(10**8).toFixed();
+      const x2ToSend = new BigNumber(inputX2).times(10**8).toFixed();
+      const x3ToSend = new BigNumber(inputX3).times(10**8).toFixed();
+      
+      crafting.methods.deposit(x1ToSend, x2ToSend, x3ToSend).send({ from: account });
     }
   }
 
@@ -138,11 +152,26 @@ function App() {
         <span>Allowance Y: {allowanceY}</span>
       </div>
       <div style={{"display": "grid", gridTemplateColumns: "1fr", "gap": 5}}>
-        <span>X1 Balance: {craftingBalanceX1}</span>
-        <span>X2 Balance: {craftingBalanceX2}</span>
-        <span>X3 Balance: {craftingBalanceX3}</span>
-        <span>Y Balance: {craftingBalanceY}</span>
+        <span>X1 Balance of contract: {craftingBalanceX1}</span>
+        <span>X2 Balance of contract: {craftingBalanceX2}</span>
+        <span>X3 Balance of contract: {craftingBalanceX3}</span>
+        <span>Y Balance of contract: {craftingBalanceY}</span>
       </div>
+      <div style={{ display: "flex", flexDirection: "column" }}>
+        <div style={{ margin: '10px 0' }}>
+          <span>X1:</span>
+          <input type="number" value={inputX1} onChange={(e: any) => {setInputX1(e.target.value)}} />
+        </div>
+        <div style={{ margin: '10px 0' }}>
+          <span>X2:</span>
+          <input type="number" value={inputX2} onChange={(e: any) => {setInputX2(e.target.value)}} />
+        </div>
+        <div style={{ margin: '10px 0' }}>
+          <span>X3:</span>
+          <input type="number" value={inputX3} onChange={(e: any) => {setInputX3(e.target.value)}} />
+        </div>
+      </div>
+      <Button onClick={onDeposit}>Deposit</Button>
     </div>
   );
 }
