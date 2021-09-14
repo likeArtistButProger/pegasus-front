@@ -8,6 +8,7 @@ import { CRAFTING, x1, x2, x3, y, MAX_UINT } from '../../shared/constants';
 import { Button } from '../../shared/components';
 import BigNumber from 'bignumber.js';
 
+import "./styles.scss";
 
 function App() {
   const { account, library } = useWeb3React();
@@ -137,9 +138,9 @@ function App() {
   }, [x1Contract, x2Contract, x3Contract, yContract, account]);
   
   return (
-    <div className="App">
+    <div className="app">
       <Header />
-      <Button onClick={getRewards}>Get Rewards</Button>
+      {/* <Button onClick={getRewards}>Get Rewards</Button>
       
       <Button onClick={() => {onApprove('x1')}}>Approve X1</Button>
       <Button onClick={() => {onApprove('x2')}}>Approve X2</Button>
@@ -171,7 +172,7 @@ function App() {
           <input type="number" value={inputX3} onChange={(e: any) => {setInputX3(e.target.value)}} />
         </div>
       </div>
-      <Button onClick={onDeposit}>Deposit</Button>
+      <Button onClick={onDeposit}>Deposit</Button> */}
     </div>
   );
 }
