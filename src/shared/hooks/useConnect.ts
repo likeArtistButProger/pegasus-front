@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { useWeb3React } from "@web3-react/core";
 import { connectorKey, Injected } from "../constants";
 
@@ -9,9 +10,11 @@ const useConnect = () => {
         localStorage.setItem(connectorKey, "Metamask");
     }
 
-    if(localStorage.getItem(connectorKey) === "Metamask") {
-        connect();
-    }
+    useEffect(() => {
+        if(localStorage.getItem(connectorKey) === "Metamask") {
+            connect();
+        }
+    }, []);
 
     return { connect };
 };
