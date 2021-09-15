@@ -17,19 +17,31 @@ const Header = () => {
     }, [activate]);
 
     return (
+
         <div className="header">
-          <nav className="nav-menu-container">
-            <ul className="nav-menu">
-                <li className="nav-menu-children"><a> Swap </a></li>
-                <li className="nav-menu-children"><a> PGC v2 BEP-20 Contracts </a></li>
-                <li className="nav-menu-children"><a> Buy </a></li>
-                <li className="nav-menu-children"><a> Staking </a></li>
-                <li className="nav-menu-children"><a> Affiliate </a></li>
-                <li className="nav-menu-children"><a> Projects </a></li>
-                <li className="nav-menu-children"><a> Pegascoin v1 (old1) </a></li>
-                <li className="nav-menu-children"><a> Join </a></li>
-            </ul>
-          </nav>
+            <div className="header-container">
+                <div id="logo" className="pull-left">
+                    <h1>
+                        <a href="/" className="scrolltop">
+                            <img src="/images/logo_32.png" alt="logo" width="32" height="32"/>
+                            PGC
+                        </a>
+                    </h1>
+                </div>
+                <nav id="nav-menu-container" className="nav-menu-container">
+                <ul className="nav-menu">
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Swap </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> PGC v2 BEP-20 Contracts </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Buy </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Staking </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Affiliate </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Projects </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Pegascoin v1 (old1) </a></li>
+                    <li className="nav-menu-children"><a className="sf-with-ul"> Join </a></li>
+                    <li className="nav-menu-children metamask-icon metamask-icon-gray"><div id="metamask" className="metamask-thing"><img src="" width="35" height="33" alt="metamask-icon"></img></div></li>
+                </ul>
+                </nav>
+            </div>
         </div>
     )
 }
