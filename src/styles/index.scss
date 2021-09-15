@@ -1,6 +1,6 @@
 @import './fonts.scss';
 
-*, body {
+*, ::after, ::before, body {
   box-sizing: border-box;
   margin: 0;
 }
