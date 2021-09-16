@@ -1,1 +1,1 @@
-export { default as Maincontent } from './Maincontent.tsx'; 
+export { default as MainContent } from './MainContent';

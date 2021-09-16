@@ -1,7 +1,4 @@
-import React, { useCallback } from "react";
-import { Button } from '../../../../shared/components'; 
-import { useWeb3React } from '@web3-react/core'; 
-import { Injected } from '../../../../shared/constants';
+import React from "react";
 
 import "./styles.scss";
 
