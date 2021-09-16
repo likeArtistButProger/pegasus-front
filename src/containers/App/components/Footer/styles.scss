@@ -1,0 +1,25 @@
+.footer {
+    box-shadow: black 0px 0px 12px 0px;
+    padding: 30px 0;
+    color: white;
+    font-size: 14px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.2);
+    flex: 0 0 auto;
+    display: block;
+}
+.footer-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-right: 100px;
+    padding-left: 100px;
+    margin-right: auto;
+    margin-left: auto;
+    max-width: 1300px;
+}
+.links {
+    color: lightskyblue;
+    text-decoration: none;
+    background-color: transparent;
+}

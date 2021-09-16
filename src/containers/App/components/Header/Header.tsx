@@ -13,9 +13,9 @@ const shortenAddress = (address: string) => {
 const Header = () => {
     const { account, activate } = useWeb3React();
     const { connect } = useConnect();
-
+  
     return (
-        <div className="header">
+        <div className="header navbar">
             <div className="header-content">
                 <div id="logo" className="pull-left">
                     <h1>
