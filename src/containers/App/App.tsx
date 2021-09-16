@@ -9,6 +9,7 @@ import { Button } from '../../shared/components';
 import BigNumber from 'bignumber.js';
 
 import "./styles.scss";
+import { Maincontent } from './components/Maincontent';
 
 function App() {
   const { account, library } = useWeb3React();
@@ -140,39 +141,7 @@ function App() {
   return (
     <div className="app">
       <Header />
-      {/* <Button onClick={getRewards}>Get Rewards</Button>
-      
-      <Button onClick={() => {onApprove('x1')}}>Approve X1</Button>
-      <Button onClick={() => {onApprove('x2')}}>Approve X2</Button>
-      <Button onClick={() => {onApprove('x3')}}>Approve X3</Button>
-      <Button onClick={() => {onApprove('y')}}>Approve Y</Button>
-      <div style={{"display": "grid", gridTemplateColumns: "1fr", "gap": 5, marginBottom: 10, marginTop: 10}}>
-        <span>Allowance X1: {allowanceX1}</span>
-        <span>Allowance X2: {allowanceX2}</span>
-        <span>Allowance X3: {allowanceX3}</span>
-        <span>Allowance Y: {allowanceY}</span>
-      </div>
-      <div style={{"display": "grid", gridTemplateColumns: "1fr", "gap": 5}}>
-        <span>X1 Balance of contract: {craftingBalanceX1}</span>
-        <span>X2 Balance of contract: {craftingBalanceX2}</span>
-        <span>X3 Balance of contract: {craftingBalanceX3}</span>
-        <span>Y Balance of contract: {craftingBalanceY}</span>
-      </div>
-      <div style={{ display: "flex", flexDirection: "column" }}>
-        <div style={{ margin: '10px 0' }}>
-          <span>X1:</span>
-          <input type="number" value={inputX1} onChange={(e: any) => {setInputX1(e.target.value)}} />
-        </div>
-        <div style={{ margin: '10px 0' }}>
-          <span>X2:</span>
-          <input type="number" value={inputX2} onChange={(e: any) => {setInputX2(e.target.value)}} />
-        </div>
-        <div style={{ margin: '10px 0' }}>
-          <span>X3:</span>
-          <input type="number" value={inputX3} onChange={(e: any) => {setInputX3(e.target.value)}} />
-        </div>
-      </div>
-      <Button onClick={onDeposit}>Deposit</Button> */}
+      <Maincontent />
     </div>
   );
 }

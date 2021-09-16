@@ -1,0 +1,1 @@
+export { default as Maincontent } from './Maincontent.tsx'; 

@@ -2,11 +2,10 @@ import React, { useCallback } from "react";
 import { Button } from '../../../../shared/components'; 
 import { useWeb3React } from '@web3-react/core'; 
 import { Injected } from '../../../../shared/constants';
-import { Header } from '../../../../containers/App/components';
 
 import "./styles.scss";
 
-const textblocks = () => {
+const Maincontent = () => {
    
     return (
         <div className="news">
@@ -26,4 +25,4 @@ const textblocks = () => {
         </div>
     )
 }
-export default textblocks;
+export default Maincontent;
