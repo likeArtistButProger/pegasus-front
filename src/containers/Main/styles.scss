@@ -1,10 +1,8 @@
 .main-content {
-    padding-top: 100px;
     width: 100%;
-    padding-right: 80px;
-    padding-left: 80px;
-    margin-right: auto;
-    margin-left: auto;
+    padding: 0 80px;
+    padding-top: 100px;
+    margin: 0 auto;
     max-width: 1300px;
 }
 
@@ -16,7 +14,6 @@
     color: lightskyblue;
     text-decoration: none;
     background-color: transparent;
-
 }
 
 .links:hover {
@@ -63,7 +60,7 @@
     height: 34px;
 }
 
-.news {
+.news-block {
     color: rgb(225, 223, 220);
     background-image: initial;
     background-color: rgba(44, 0, 44, 0.2);
@@ -75,7 +72,7 @@
     padding: 20px;
     line-height: 30px;
 }
-.news:last-child {
+.news-block:last-of-type {
     margin-bottom: 50px;
 }
 
@@ -90,18 +87,4 @@
     font-weight: bold;
     border-bottom: 1px dotted plum;
     margin-bottom: 10px;
-}
-
-.second-news-block {
-    line-height: 25px;
-}
-
-.news-text {
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-.news-date {
-    font-weight: bold;
-    font-size: 12px;
 }

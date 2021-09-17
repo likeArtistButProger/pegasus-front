@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import { App } from './containers/App';
 import reportWebVitals from './reportWebVitals';
 import { Web3ReactProvider } from '@web3-react/core'
+import { EthereumProvider } from './contexts/EthereumContext';
 import Web3 from 'web3';
 
 import './styles/index.scss';
@@ -18,7 +19,9 @@ const getLibrary = (provider: any) => {
 ReactDOM.render(
   <Web3ReactProvider getLibrary={getLibrary}>
     <React.StrictMode>
-      <App />
+      <EthereumProvider>
+        <App />
+      </EthereumProvider>
     </React.StrictMode>
   </Web3ReactProvider>,
   document.getElementById('root')

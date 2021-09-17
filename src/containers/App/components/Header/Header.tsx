@@ -1,17 +1,9 @@
-import React, { useCallback } from "react";
-import { Button } from '../../../../shared/components'; 
-import { useWeb3React } from '@web3-react/core'; 
-import { Injected } from '../../../../shared/constants';
+import React from "react";
 import { useConnect } from "../../../../shared/hooks";
 
 import "./styles.scss";
 
-const shortenAddress = (address: string) => {
-    return address.substr(0, 7) + "..." + address.substr(address.length - 4);
-};
-
 const Header = () => {
-    const { account, activate } = useWeb3React();
     const { connect } = useConnect();
   
     return (
@@ -27,7 +19,7 @@ const Header = () => {
                 </div>
                 <nav id="nav-menu-container" className="nav-menu-container">
                     <ul className="nav-menu">
-                        <li className="nav-menu-children"><a className="header-link"> Swap </a></li>
+                        <li className="nav-menu-children"><a href="/swap" className="header-link"> Swap </a></li>
                         <li className="nav-menu-children"><a className="header-link"> PGC v2 BEP-20 Contracts </a></li>
                         <li className="nav-menu-children"><a className="header-link"> Buy </a></li>
                         <li className="nav-menu-children"><a className="header-link"> Staking </a></li>

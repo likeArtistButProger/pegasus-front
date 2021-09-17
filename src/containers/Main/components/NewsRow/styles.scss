@@ -1,0 +1,33 @@
+.news-row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & .row-date {
+        font-weight: 700;
+        margin-right: 5px;
+    }
+
+    & .row-image {
+        width: 20px;
+        height: 20px;
+        margin-right: 8px;
+    }
+
+    & .row-description {
+        font-weight: 400;
+    }
+
+    &.complete {
+
+        & .row-date, & .row-description {
+            color: springgreen;
+        }
+    }
+
+    &.progress {
+        & .row-date, & .row-description {
+            color: #FFF000;
+        }
+    }
+}
