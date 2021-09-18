@@ -28,7 +28,7 @@ const Header = () => {
                         <li className="nav-menu-children"><a className="header-link"> Pegascoin v1 (old1) </a></li>
                         <li className="nav-menu-children"><a className="header-link"> Join </a></li>
                     </ul>
-                    <div onClick={connect} id="metamask" className="metamask-thing">
+                    <div onClick={connect} id="metamask" className="metamask">
                         <img src="/images/metamask.svg" alt="metamask-icon" />
                     </div>
                 </nav>
