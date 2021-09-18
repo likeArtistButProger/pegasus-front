@@ -45,7 +45,7 @@ const Swap = () => {
         <hr className="mt-5"></hr>
 
         <p className="mt-4">Enter your PGC address to go to your PGC Swap Balance Page:</p>
-        <div className="input-group mb-5">
+        <div className="input-group">
             <input id="Address" className="form-control" type="text" aria-describedby="button-go" placeholder="PGC address"/>
             <div className="input-group-append">
                 <button className="btn btn-primary" id="button-go">Go</button>
@@ -57,12 +57,171 @@ const Swap = () => {
             
         <table className="table table-condensed swapBalanceTable mb-3">
             <caption className="t-caption">PGC0 token claim info:</caption>
-            <tbody><tr>
-                <th>Minimal swap balance for claim</th>
-                <th className="text-center">Claim price (PGC) from swap balance</th>
-                <th className="text-right">Claim take (PGC0) from swap balance</th>
-            </tr>
-            <tr><td>10 000</td><td className="text-center">10 %</td><td className="text-right">50 %</td></tr><tr><td>50 000</td><td className="text-center">20 %</td><td className="text-right">90 %</td></tr><tr><td>250 000</td><td className="text-center">30 %</td><td className="text-right">120 %</td></tr><tr><td>500 000</td><td className="text-center">50 %</td><td className="text-right">150 %</td></tr><tr><td>750 000</td><td className="text-center">70 %</td><td className="text-right">180 %</td></tr><tr><td>1 000 000</td><td className="text-center">100 %</td><td className="text-right">250 %</td></tr>        </tbody></table>
+            <tbody className="tbody">
+                <tr className="tr">
+                    <th className="th">Minimal swap balance for claim</th>
+                    <th className="text-center th">Claim price (PGC) from swap balance</th>
+                    <th className="text-right th">Claim take (PGC0) from swap balance</th>
+                </tr>
+                <tr className="tr">
+                    <td className="td">10 000</td>
+                    <td className="text-center td">10 %</td>
+                    <td className="text-right td">50 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">50 000</td>
+                    <td className="text-center td">20 %</td>
+                    <td className="text-right td">90 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">250 000</td>
+                    <td className="text-center td">30 %</td>
+                    <td className="text-right td">120 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">500 000</td>
+                    <td className="text-center td">50 %</td>
+                    <td className="text-right td">150 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">750 000</td>
+                    <td className="text-center td">70 %</td>
+                    <td className="text-right td">180 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">1 000 000</td>
+                    <td className="text-center td">100 %</td>
+                    <td className="text-right td">250 %</td></tr>        
+            </tbody>
+        </table>
+
+        <p className="mt-2"><span className="comment">To complete the swap procedure (PGC to PGC0 Binance Smart Chain tokens) and to receive additional exchange bonus you need to pay in old PGC tokens according to the table above.</span><br/>
+           <span className="warning">Claim Option will be opened soon.</span></p>
+        
+           <table className="table table-condensed swapBalanceTable mb-3">
+            <caption className="t-caption">Bonus size (at the end of the stage):</caption>
+            <tbody className="tbody">
+                <tr className="tr">
+                    <th className="th">Balance</th>
+                    <th className="text-right th">Bonus</th>
+                </tr>
+                <tr className="tr">
+                    <td className="td">0 ≤ <span className="italic">x</span> &lt; 10000 PGC</td>
+                    <td className="text-right td">-100 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">10000 ≤ <span className="italic">x</span> &lt; 50000 PGC</td>
+                    <td className="text-right td">0 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">50000 ≤ <span className="italic">x</span> &lt; 100000 PGC</td>
+                    <td className="text-right td">10 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">100000 ≤ <span className="italic">x</span> &lt; 250000 PGC</td>
+                    <td className="text-right td">15 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">250000 ≤ <span className="italic">x</span> &lt; 500000 PGC</td>
+                    <td className="text-right td">20 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">500000 ≤ <span className="italic">x</span> &lt; 1000000 PGC</td>
+                    <td className="text-right td">25 %</td>
+                </tr>        
+                <tr className="tr">
+                    <td className="td">1000000 ≤ <span className="italic">x</span> &lt; 2500000 PGC</td>
+                    <td className="text-right td">30 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">2500000 ≤ <span className="italic">x</span> &lt; 5000000 PGC</td>
+                    <td className="text-right td">40 %</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td">5000000 PGC and more</td>
+                    <td className="text-right td">50 %</td>
+                </tr>       
+            </tbody>
+        </table>
+
+        <table className="table table-condensed swapBalanceTable mb-3">
+            <caption className="t-caption">Top 10 wallets for swap:</caption>
+            <tbody className="tbody">
+                <tr className="tr">
+                    <th className="th">Adress</th>
+                    <th className="text-right th">Amount</th>
+                    <th className="text-right th">Bonus</th>
+                    <th className="text-right th">Total</th>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x777…99f</td>
+                    <td className="text-right td">6 148 281 PGC</td>
+                    <td className="text-right td">3 074 140 PGC</td>
+                    <td className="text-right td">9 222 421 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0xf66…aa5</td>
+                    <td className="text-right td">1 465 215 PGC</td>
+                    <td className="text-right td">439 565 PGC</td>
+                    <td className="text-right td">1 904 780 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0xef1…b8d</td>
+                    <td className="text-right td">742 963 PGC</td>
+                    <td className="text-right td">185 741 PGC</td>
+                    <td className="text-right td">928 704 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x681…921</td>
+                    <td className="text-right td">617 524 PGC</td>
+                    <td className="text-right td">154 381 PGC</td>
+                    <td className="text-right td">771 905 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x794…b96</td>
+                    <td className="text-right td">507 687 PGC</td>
+                    <td className="text-right td">126 922 PGC</td>
+                    <td className="text-right td">634 609 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0xaf8…aa2</td>
+                    <td className="text-right td">370 917 PGC</td>
+                    <td className="text-right td">74 183 PGC</td>
+                    <td className="text-right td">445 101 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0xd50…1f0</td>
+                    <td className="text-right td">363 189 PGC</td>
+                    <td className="text-right td">72 638 PGC</td>
+                    <td className="text-right td">435 827 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x456…ff3</td>
+                    <td className="text-right td">285 092 PGC</td>
+                    <td className="text-right td">57 018 PGC</td>
+                    <td className="text-right td">342 110 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x03b…258</td>
+                    <td className="text-right td">283 988 PGC</td>
+                    <td className="text-right td">56 798 PGC</td>
+                    <td className="text-right td">340 786 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td className="td td-blue-bold">0x74e…db2</td>
+                    <td className="text-right td">280 610 PGC</td>
+                    <td className="text-right td">56 122 PGC</td>
+                    <td className="text-right td">336 732 PGC</td>
+                </tr>
+                <tr className="tr">
+                    <td></td>
+                    <td className="text-right t-conclusion">13 447 837 PGC</td>
+                    <td className="text-right"></td>
+                    <td className="text-right"></td>
+                </tr>
+            </tbody>
+        </table>
+        <div className="swap-page-bottom-spacemaker"/>
     </div>
     )
 }

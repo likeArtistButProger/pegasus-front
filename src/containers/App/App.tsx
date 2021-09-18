@@ -17,7 +17,7 @@ function App() {
         rgba(60, 50, 50, 0.8),
         rgba(65, 50, 50, 0.6)),
         url("/images/background.jpg")
-        center top no-repeat`
+        center top no-repeat fixed`
     } else {
       return `linear-gradient(
         95deg,
