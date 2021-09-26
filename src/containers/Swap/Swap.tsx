@@ -1,18 +1,26 @@
 import React from "react";
+import { useHistory } from "react-router-dom";
 
 import './styles.scss';
 
 const Swap = () => {
+    const history = useHistory();
+
+    const redirectToMainPage = () => {
+        history.push("/");
+    }
 
     return (
         
     <div className="swap-container">
-        <div className="divh2">
-            <div className="row">
-                <div className="col-auto pr-0"><img src="/images/logo_128.png" width="45" height="45" alt="logo" className="mr-2"/></div>
-                <div className="col pl-2 bigtext">Pegascoin Swap</div>
+        <a href="/" className="back-to-main-link">
+            <div onClick={redirectToMainPage} className="divh2">
+                <div className="row">
+                    <div className="col-auto pr-0"><img src="/images/logo_128.png" width="45" height="45" alt="logo" className="mr-2"/></div>
+                    <div className="col pl-2 bigtext">Pegascoin Swap</div>
+                </div>
             </div>
-        </div>
+        </a>
 
         <hr className="mt-3"></hr>
         

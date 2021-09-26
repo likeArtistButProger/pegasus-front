@@ -1,7 +1,6 @@
 .header {
     //background: linear-gradient(45deg, #7f1ae5, #e41ae5); //это по идее должно быть когда скролишь ниже
     position: fixed;
-    overflow: hidden;
     top: 0px;
     left: 0px;
     display: flex;
@@ -15,6 +14,7 @@
     text-align: left;
     text-size-adjust: 100%;
     font-family: "Monsterrat", sans-serif;
+    z-index: 1;
 }
 
 .scrolled{
@@ -85,10 +85,6 @@
     font-size: 18px;
     line-height: 24px;
     font-weight: 400;
-    font-family: "Monsterrat", sans-serif;
-    list-style-image: none;
-    list-style-position: outside;
-    list-style-type: none;
     margin: 0px;
     padding: 40px;
     height: 92px;
@@ -101,17 +97,17 @@
 .nav-menu-children {
     margin: 0;
     padding: 5px;
-    list-style: none;
-    display: list-item;
     text-align: -webkit-match-parent;
     font-family: "Monsterrat", sans-serif;
 }
 
 .header-link {
+    display: flex;
+    align-items: center;
     height: 31px;
     margin: 0px;
     padding: 0px 8px 10px 8px;
-    font-size: 16px;
+    font-size: 15px;
     line-height: 21px;
     font-weight: 400;
     font-family: "Monsterrat", sans-serif;
@@ -124,7 +120,10 @@
     transition-duration: 0s;
     transition-property: all;
     transition-timing-function: ease;
+    text-decoration: none;
 }
+
+
 .nav-menu-children:hover {
     background-color: rgba(190, 194, 255, 0.5);
     outline: none;

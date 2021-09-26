@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, useLocation } from 'react-router-dom';
 
 import { Header, Footer } from './components';
 import Routes from './Routes'
@@ -8,8 +8,9 @@ import "./styles.scss";
 
 function App() {
 
+  const { pathname } = window.location;
+
   const backgroundStyle = (): string => {
-    const pathname = window.location.pathname;
     
     if(pathname === "/swap") {
       return `linear-gradient(
@@ -31,7 +32,10 @@ function App() {
   return (
     <div style={{ background: backgroundStyle() }} className="app">
       <BrowserRouter>
-        <Header />
+        {
+          pathname !== "/swap" &&
+          <Header />
+        }
         <Routes />
         <Footer />      
       </BrowserRouter>

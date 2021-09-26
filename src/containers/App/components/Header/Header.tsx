@@ -1,5 +1,9 @@
 import React from "react";
 import { useConnect } from "../../../../shared/hooks";
+import { LinkWithDropdown } from "./components";
+import { Links } from './LinksConfig';
+
+import { FireIcon } from "./_resources/FireIcon";
 
 import "./styles.scss";
 
@@ -7,7 +11,7 @@ const Header = () => {
     const { connect } = useConnect();
   
     return (
-        <div className="header navbar">
+        <div className="header">
             <div className="header-content">
                 <div id="logo" className="pull-left">
                     <h1>
@@ -17,21 +21,25 @@ const Header = () => {
                         </a>
                     </h1>
                 </div>
-                <nav id="nav-menu-container" className="nav-menu-container">
-                    <ul className="nav-menu">
-                        <li className="nav-menu-children"><a href="/swap" className="header-link"> Swap </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> PGC v2 BEP-20 Contracts </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Buy </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Staking </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Affiliate </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Projects </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Pegascoin v1 (old1) </a></li>
-                        <li className="nav-menu-children"><a className="header-link"> Join </a></li>
-                    </ul>
+                <div id="nav-menu-container" className="nav-menu-container">
+                    <div className="nav-menu">
+                        <div className="nav-menu-children">
+                            <a href="/swap" className="header-link"> 
+                                <FireIcon />
+                                <span>Swap</span>
+                                <FireIcon />
+                            </a>
+                        </div>
+                        {
+                            Links.map(({title, href, additionalLinks}) => (
+                                <LinkWithDropdown title={title} href={href} options={additionalLinks} />
+                            ))
+                        }
+                    </div>
                     <div onClick={connect} id="metamask" className="metamask">
                         <img src="/images/metamask.svg" alt="metamask-icon" />
                     </div>
-                </nav>
+                </div>
             </div>
         </div>
     )
