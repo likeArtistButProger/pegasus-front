@@ -10,7 +10,7 @@ const MainContent = () => {
         <div className="main-content">
             <div className="main-logo">
             <div className="col-auto">
-                <img className="intro-logo" src="images/logo_128.png" width="128" height="128"/>
+                <img className="intro-logo" src="images/logo_128.png" alt="logo" width="128" height="128"/>
             </div>
             <div className="col-auto">
                 <p className="pgc-caption">Pegascoin</p>

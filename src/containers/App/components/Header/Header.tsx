@@ -1,5 +1,6 @@
 import React from "react";
 import { useConnect } from "../../../../shared/hooks";
+import { useWeb3React } from "@web3-react/core";
 import { LinkWithDropdown } from "./components";
 import { Links } from './LinksConfig';
 
@@ -7,7 +8,12 @@ import { FireIcon } from "./_resources/FireIcon";
 
 import "./styles.scss";
 
+const shortenAccount = (account: string) => {
+    return account.substr(0, 6) + "..." + account.substr(-4, 4);
+}
+
 const Header = () => {
+    const { account } = useWeb3React();
     const { connect } = useConnect();
   
     return (
@@ -32,13 +38,20 @@ const Header = () => {
                         </div>
                         {
                             Links.map(({title, href, additionalLinks}) => (
-                                <LinkWithDropdown title={title} href={href} options={additionalLinks} />
+                                <LinkWithDropdown key={title+href} title={title} href={href} options={additionalLinks} />
                             ))
                         }
                     </div>
-                    <div onClick={connect} id="metamask" className="metamask">
-                        <img src="/images/metamask.svg" alt="metamask-icon" />
-                    </div>
+                    {
+                        !!account ? (
+                            <div className="account">{shortenAccount(account)}</div>
+                        )
+                        : (
+                        <button onClick={connect} id="metamask" className="metamask">
+                            <img src="/images/metamask.svg" alt="metamask-icon" />
+                        </button>
+                        )
+                    }
                 </div>
             </div>
         </div>

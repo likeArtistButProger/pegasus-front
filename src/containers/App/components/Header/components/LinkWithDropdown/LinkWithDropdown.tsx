@@ -7,7 +7,8 @@ export type Option = {
     content: JSX.Element;
     href?: string;
     icon: string;
-    iconSize?: [number, number]
+    iconSize?: [number, number],
+    isRoute?: boolean
 }
 
 type Props = {
@@ -18,20 +19,29 @@ type Props = {
 
 const LinkWithDropdown = ({title, href, options}: Props) => {
     const [isDropdownVisible, setIsDropdownVisible] = useState<boolean>(false);
+    const [isDrowdownShowing, setIsdropdownShowing] = useState<boolean>(false);
+    const [showingTimeout, setShowingTimeout] = useState<NodeJS.Timeout>();
     const [closeTimeout, setCloseTimeout] = useState<NodeJS.Timeout>();
 
     const showDropdown = useCallback(() => {
         if(!!closeTimeout) {
             clearTimeout(closeTimeout);
         }
+        if(!!showingTimeout) {
+            clearTimeout(showingTimeout);
+        }
         setIsDropdownVisible(true);
-    }, [setIsDropdownVisible, closeTimeout])
+        setIsdropdownShowing(true);
+
+    }, [setIsDropdownVisible, closeTimeout, showingTimeout])
 
     const hideDropdown = useCallback(() => {
-        const newCloseTimeout = setTimeout(() => {setIsDropdownVisible(false)}, 500);
+        const newShowingTimeout = setTimeout(() => {setIsdropdownShowing(false)}, 500);
+        const newCloseTimeout = setTimeout(() => {setIsDropdownVisible(false)}, 800);
+        setShowingTimeout(newShowingTimeout);
         setCloseTimeout(newCloseTimeout);
         
-    }, [setIsDropdownVisible]);
+    }, []);
 
     return (
         <div 
@@ -45,11 +55,12 @@ const LinkWithDropdown = ({title, href, options}: Props) => {
                 </a>
             </div>
             {
-                options &&
-                <div className={classNames("dropdown", { active: isDropdownVisible })}>
+                isDropdownVisible && options &&
+                <div className={classNames("dropdown", { active: isDrowdownShowing })}>
                     {
-                        options.map(({content, icon, href, iconSize}) => (
-                            <a href={href} target="_blank" rel="noreferrer" className="option">
+                        options.map(({content, icon, href, iconSize, isRoute}) => (
+                            // eslint-disable-next-line react/jsx-no-target-blank
+                            <a key={href+icon} href={href} target={isRoute ? "_self" : "_blank"} rel={isRoute ? "" : "noreferrer"} className="option">
                                 <img
                                     src={icon}
                                     alt="icon"

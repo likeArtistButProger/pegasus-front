@@ -1,3 +1,5 @@
+@import "../../../../styles/variables.scss";
+
 .header {
     //background: linear-gradient(45deg, #7f1ae5, #e41ae5); //это по идее должно быть когда скролишь ниже
     position: fixed;
@@ -26,7 +28,7 @@
     align-items: center;
     justify-content: space-between;
     width: 100%;
-    max-width: 1200px;
+    max-width: $max-width;
     height: 92px;
     margin: 0 auto;
     padding: 0 50px;
@@ -128,6 +130,14 @@
     background-color: rgba(190, 194, 255, 0.5);
     outline: none;
     text-decoration: none;
+}
+
+.account {
+    font-size: 14px;
+    padding-bottom: 10px;
+    line-height: 21px;
+    color: #FFFFFF;
+    font-weight: 500;
 }
 
 .metamask {

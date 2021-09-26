@@ -1,0 +1,89 @@
+@import "../../styles/variables.scss";
+
+.crafting-container {
+    max-width: $max-width;
+    min-height: calc(100vh - 70px);
+    margin: 0 auto;
+    padding-top: 90px;
+
+    & .crafting-card {
+        max-width: 400px;
+        height: 80%;
+        margin: auto;
+        border-radius: 10px;
+        line-height: 30px;
+        color: #e1dfdc;
+        background: rgba(80, 0, 80, 0.2);
+        box-shadow: #550055 0px 0px 20px;
+
+        &-header {
+            padding: 10px;
+            border-bottom: 1px dotted plum;
+        }
+
+        &-content {
+            padding: 10px;
+
+            & .token-section {
+                margin-top: 10px;
+
+                &:first-of-type {
+                    margin: 0;
+                }
+            }
+
+            & .balance-row {
+                display: flex;
+                align-items: center;
+                justify-content: space-between;
+
+                & .label, &.amount {
+                    font-size: 14px;
+                    line-height: 21px;
+                }
+
+                & .label {
+                    font-weight: 700;
+                }
+            }
+
+            & .deposit {
+                margin-top: 5px;
+            }
+        }
+
+        & .card-input {
+            width: 100%;
+            padding: 5px;
+            font-size: 16px;
+            line-height: 24px;
+            appearance: none;
+            outline: none;
+            border: none;
+            background:rgba(190, 194, 255, 0.4);
+            color: #FFFFFF;
+            border-radius: 4px;
+        }
+
+        & .card-btn-wrapper {
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        & .card-btn {
+            font-size: 16px;
+            line-height: 24px;
+            color: #FFFFFF;
+            background:rgba(190, 194, 255, 0.4);
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+        }
+
+        & .deposit-btn-wrapper {
+            margin-top: 30px;
+        }
+    }
+}

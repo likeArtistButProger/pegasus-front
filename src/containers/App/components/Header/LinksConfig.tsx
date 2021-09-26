@@ -93,7 +93,14 @@ const Links: LinkConfig[] = [
             },
             makeInactiveOption("IDO"),
             makeInactiveOption("TokenCreate"),
-            makeInactiveOption("Crafting"),
+            {
+                icon: "/svg/coming_soon.svg",
+                href: "/crafting",
+                isRoute: true,
+                // @ts-ignore
+                content: <div style={defaultStyle}>Crafting</div>
+            },
+            // makeInactiveOption("Crafting"),
             makeInactiveOption("Lottery"),
             makeInactiveOption("Tasks"),
             makeInactiveOption("NFT"),
