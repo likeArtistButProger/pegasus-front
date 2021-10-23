@@ -1,4 +1,4 @@
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useEthereum } from "../../contexts/EthereumContext";
 import { useWeb3React } from "@web3-react/core";
 import BigNumber from 'bignumber.js';
@@ -13,6 +13,8 @@ const Crafting = () => {
     const [amountPGC0, setAmountPGC0] = useState<string>("0");
     const [amountPGR1, setAmountPGR1] = useState<string>("0");
     const [amountPGSV, setAmountPGSV] = useState<string>("0");
+    const [rewards, setRewards] = useState<any[]>([]);
+    const [craftingTime, setCraftingTime] = useState<number>(1);
 
     const pgc0 = useContract(Pgc0);
     const pgr1 = useContract(Pgr1);
@@ -24,6 +26,12 @@ const Crafting = () => {
         {title: "PGSV", ...pgsv, amount: amountPGSV, setAmount: setAmountPGSV}
     ], [amountPGC0, amountPGR1, amountPGSV, pgc0, pgr1, pgsv]);
 
+    const updateRewards = useCallback(() => {
+        Crafting.methods.getAllAvailableRewards(account).call().then((res: any) => {
+            setRewards(res);
+        })
+    }, [Crafting, account]);
+
     const onDeposit = useCallback(async () => {
         if(!!Crafting && !!Pgc0 && !!Pgr1 && !!Pgsv) {
             const pgc0Decimals = await Pgc0.methods.decimals().call();
@@ -34,14 +42,112 @@ const Crafting = () => {
             const depositAmountPgr1 = new BigNumber(amountPGR1).times(10 ** pgr1Decimals).toFixed();
             const depositAmountPgsv = new BigNumber(amountPGSV).times(10 ** pgsvDecimals).toFixed();
 
+            const gas = await Crafting.methods.deposit(depositAmountPgco0, depositAmountPgr1, depositAmountPgsv).estimateGas({ from: account });
+
             Crafting.methods
                 .deposit(depositAmountPgco0, depositAmountPgr1, depositAmountPgsv)
-                .send({ from: account })
+                .send({ from: account, gas: gas })
                 .then(() => {
                     usableCoins.forEach(coin => coin.updateBalance())
+                    updateRewards();
                 })
         }
-    }, [Crafting, Pgc0, Pgr1, Pgsv, account, amountPGC0, amountPGR1, amountPGSV, usableCoins]);
+    }, [Crafting, Pgc0, Pgr1, Pgsv, account, amountPGC0, amountPGR1, amountPGSV, usableCoins, updateRewards]);
+
+    const onCollect = async (rewardId: number) => {
+        if(!!Crafting && !!account) {
+            // const gas = await Crafting.methods.claimReward(rewardId).estimateGas({ from: account });
+
+            // console.log(gas);
+            
+            Crafting.methods.claimReward(rewardId).send({ from: account, gas: 220000}).then(() => {
+                updateRewards();
+                usableCoins.forEach(coin => {
+                    coin.updateBalance();
+                });
+            })
+        }
+    }
+
+    useEffect(() => {
+        if(!!Crafting) {
+            if (!!account) {
+                Crafting.methods.craftingTime().call().then((res: number) => {
+                    setCraftingTime(res);
+                });
+
+                updateRewards();
+            }
+        }
+    }, [Crafting, account, updateRewards]);
+
+    const formattedRewards = useMemo(() => {
+        return rewards.map((reward) => {
+            const { id, rewardX1, rewardY, collectedRewardX1, collectedRewardY, lockTime } = reward;
+
+            const leftPGC0 = new BigNumber(rewardX1)
+                .minus(new BigNumber(collectedRewardX1))
+                .div(10 ** 8)
+                .toNumber()
+                .toFixed(5);
+
+            const leftPGC = new BigNumber(rewardY)
+                .minus(new BigNumber(collectedRewardY))
+                .div(10 ** 8)
+                .toNumber()
+                .toFixed(5);
+            
+            const rewardLockTime = parseInt(lockTime) * 1000;
+            const craftingTimeInMilliseconds = new BigNumber(craftingTime).times(1000).toNumber();
+            const now = new Date().getTime();
+
+            const timeDelta = now >= (rewardLockTime + craftingTimeInMilliseconds) ? craftingTimeInMilliseconds : now - rewardLockTime;
+            const allocatedRewardX1 = new BigNumber(rewardX1)
+                .times(timeDelta)
+                .div(craftingTimeInMilliseconds)
+                .minus(collectedRewardX1)
+                .div(10 ** 8)
+                .toNumber()
+                .toFixed(5);
+
+            const allocatedRewardY = new BigNumber(rewardY)
+                .times(timeDelta)
+                .div(craftingTimeInMilliseconds)
+                .minus(collectedRewardY)
+                .div(10 ** 8)
+                .toNumber()
+                .toFixed(5);
+
+            console.table({
+                id,
+                allocatedRewardX1,
+                allocatedRewardY,
+                leftPGC0,
+                leftPGC,
+                rewardX1,
+                rewardY,
+                craftingTimeInMilliseconds,
+                now,
+                rewardLockTime,
+                timeDelta,
+            });
+            
+            return {
+                id: parseInt(id),
+                leftPGC0,
+                leftPGC,
+                allocatedRewardX1,
+                allocatedRewardY
+            }
+        }).filter((reward) => {
+            const leftPGC0 = new BigNumber(reward.leftPGC0);
+            const leftPGC = new BigNumber(reward.leftPGC);
+            const allocatedRewardX1 = new BigNumber(reward.allocatedRewardX1);
+            const allocatedRewardY = new BigNumber(reward.allocatedRewardY);
+
+            return ((leftPGC0.gt(0) || leftPGC.gt(0)) && (allocatedRewardX1.gte(0) || allocatedRewardY.gte(0)));
+        })
+    }, [rewards, craftingTime]);
 
     return (
         <div className="crafting-container">
@@ -82,12 +188,36 @@ const Crafting = () => {
                     </div>
                 </div>
             </div>
-            {/* <div className="crafting-card">
+            <div className="crafting-card" style={{ maxWidth: "100%" }}>
                 <div className="crafting-card-header">Rewards</div>
                 <div className="crafting-card-content">
-
+                    <div className="reward-info-row">
+                        <div className="label">Left reward</div>
+                        <div className="label">Minted reward</div>
+                    </div>
+                    <div className="reward-info-row">
+                        <div className="label">PGC0</div>
+                        <div className="label">PGC</div>
+                        <div className="label">PGC0</div>
+                        <div className="label">PGC</div>
+                    </div>
+                    <div className="reward-list">
+                        {
+                            formattedRewards.map((reward) => (
+                                <div key={reward.id} className="reward-row">
+                                    <div className="reward-row-amounts">
+                                        <div className="label">{reward.leftPGC0}</div>
+                                        <div className="label">{reward.leftPGC}</div>
+                                        <div className="label">{reward.allocatedRewardX1}</div>
+                                        <div className="label">{reward.allocatedRewardY}</div>
+                                    </div>
+                                    <button onClick={() => onCollect(reward.id)} className="card-btn claim-btn">Claim</button>
+                                </div>
+                            ))
+                        }
+                    </div>
                 </div>
-            </div> */}
+            </div>
         </div>
     )
 }
