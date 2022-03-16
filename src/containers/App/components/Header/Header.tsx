@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useCallback, useState } from "react";
 import { useConnect } from "../../../../shared/hooks";
 import { useWeb3React } from "@web3-react/core";
 import { LinkWithDropdown } from "./components";
-import { Links } from './LinksConfig';
+import { Links } from "./LinksConfig";
+import { isMobile } from "react-device-detect";
 
 import { FireIcon } from "./_resources/FireIcon";
 
@@ -12,9 +13,29 @@ const shortenAccount = (account: string) => {
     return account.substr(0, 6) + "..." + account.substr(-4, 4);
 }
 
-const Header = () => {
+const MetamaskButton = () => {
     const { account } = useWeb3React();
     const { connect } = useConnect();
+
+    return (
+        !!account ? (
+            <div className="account">{shortenAccount(account)}</div>
+        )
+        : (
+        <button onClick={connect} id="metamask" className="metamask">
+            <img src="/images/metamask.svg" alt="metamask-icon" />
+        </button>
+        )
+    )
+}
+
+const Header = () => {
+
+    const [isBurgerOpened, setIsBurgerOpened] = useState<boolean>(false);
+
+    const toggleBurger = useCallback(() => {
+        setIsBurgerOpened(prevState => !prevState);
+    }, [setIsBurgerOpened]);
   
     return (
         <div className="header">
@@ -26,6 +47,11 @@ const Header = () => {
                             <span className="logo-text">PGC</span> 
                         </a>
                     </h1>
+                </div>
+                <div className="drop-menu-toggle" onClick={toggleBurger}>
+                    <span className="drop-menu-icon"></span>
+                    <span className="drop-menu-icon"></span>
+                    <span className="drop-menu-icon"></span>
                 </div>
                 <div id="nav-menu-container" className="nav-menu-container">
                     <div className="nav-menu">
@@ -41,19 +67,25 @@ const Header = () => {
                                 <LinkWithDropdown key={title+href} title={title} href={href} options={additionalLinks} />
                             ))
                         }
+                        {
+                            !isMobile &&
+                            <MetamaskButton />
+                        }
                     </div>
-                    {
-                        !!account ? (
-                            <div className="account">{shortenAccount(account)}</div>
-                        )
-                        : (
-                        <button onClick={connect} id="metamask" className="metamask">
-                            <img src="/images/metamask.svg" alt="metamask-icon" />
-                        </button>
-                        )
-                    }
                 </div>
             </div>
+            {   isBurgerOpened &&
+                <div className="mobile-menu-active">
+                    {
+                        Links.map(({title, href, additionalLinks}) => (
+                            <LinkWithDropdown key={title+href} title={title} href={href} options={additionalLinks} />
+                        ))
+                    }
+                </div>
+            }
+            {   isBurgerOpened &&
+                <div className="mobile-background"></div>
+            }
         </div>
     )
 }

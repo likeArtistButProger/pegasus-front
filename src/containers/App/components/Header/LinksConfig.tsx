@@ -110,7 +110,6 @@ const Links: LinkConfig[] = [
     },
     {
         title: "Pegascoin v1 (old)",
-        href: "https://pegascoin.com/index_old.html",
         additionalLinks: [
             {
                 icon: "/svg/home.svg",
