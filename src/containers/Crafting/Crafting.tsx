@@ -188,6 +188,7 @@ const Crafting = () => {
                     </div>
                 </div>
             </div>
+<<<<<<< HEAD
             
             <div className="crafting-card">
                 <div className="crafting-card-header">Rewards</div>
@@ -224,6 +225,38 @@ const Crafting = () => {
                 </div>
             </div>
 
+=======
+            <div className="crafting-card" style={{ maxWidth: "100%" }}>
+                <div className="crafting-card-header">Rewards</div>
+                <div className="crafting-card-content">
+                    <div className="reward-info-row">
+                        <div className="label">Left reward</div>
+                        <div className="label">Minted reward</div>
+                    </div>
+                    <div className="reward-info-row">
+                        <div className="label">PGC0</div>
+                        <div className="label">PGC</div>
+                        <div className="label">PGC0</div>
+                        <div className="label">PGC</div>
+                    </div>
+                    <div className="reward-list">
+                        {
+                            formattedRewards.map((reward) => (
+                                <div key={reward.id} className="reward-row">
+                                    <div className="reward-row-amounts">
+                                        <div className="label">{reward.leftPGC0}</div>
+                                        <div className="label">{reward.leftPGC}</div>
+                                        <div className="label">{reward.allocatedRewardX1}</div>
+                                        <div className="label">{reward.allocatedRewardY}</div>
+                                    </div>
+                                    <button onClick={() => onCollect(reward.id)} className="card-btn claim-btn">Claim</button>
+                                </div>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+>>>>>>> 72f1e6cfc1e67afc9cc85adb77f8c3a671599e98
         </div>
         
     )
