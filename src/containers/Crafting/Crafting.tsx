@@ -188,7 +188,6 @@ const Crafting = () => {
                     </div>
                 </div>
             </div>
-<<<<<<< HEAD
             
             <div className="crafting-card">
                 <div className="crafting-card-header">Rewards</div>
@@ -225,7 +224,6 @@ const Crafting = () => {
                 </div>
             </div>
 
-=======
             <div className="crafting-card" style={{ maxWidth: "100%" }}>
                 <div className="crafting-card-header">Rewards</div>
                 <div className="crafting-card-content">
@@ -256,7 +254,6 @@ const Crafting = () => {
                     </div>
                 </div>
             </div>
->>>>>>> 72f1e6cfc1e67afc9cc85adb77f8c3a671599e98
         </div>
         
     )
