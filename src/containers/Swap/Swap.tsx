@@ -25,12 +25,12 @@ const Swap = () => {
         <hr className="mt-3"></hr>
         
         <ol className="ol">
-            <li className="li"><a className="a-link" href="https://wallet.pegascoin.com" target="_blank" rel="nofollow noopener">Create</a> a new Pegascoin wallet. Keep the keys and password safe!<br />
+            <li className="li"><a className="a-link" href="https://wallet.pegascoin.com" target="_blank" rel="nofollow noopener noreferrer">Create</a> a new Pegascoin wallet. Keep the keys and password safe!<br />
                 <span className="warning">Warning! Your Pegascoin wallet address will be used in both Pegascoin blockchain and Binance Smart Chain.</span><br />
                 <span className="comment">You can buy Pegascoins at the following exchanges:
                 <ul>
-                    <li><a className="a-link" href="https://app.stex.com/en/trading/pair/BTC/PGC/1D" target="_blank" rel="nofollow noopener">STEX</a></li>
-                    <li><a className="a-link" href="https://btc-alpha.com/ru/trade/PGC_BTC" target="_blank" rel="nofollow noopener">BTC-alpha</a></li>
+                    <li><a className="a-link" href="https://app.stex.com/en/trading/pair/BTC/PGC/1D" target="_blank" rel="nofollow noopener noreferrer">STEX</a></li>
+                    <li><a className="a-link" href="https://btc-alpha.com/ru/trade/PGC_BTC" target="_blank" rel="nofollow noopener noreferrer">BTC-alpha</a></li>
                 </ul>
                 </span>
             </li>
@@ -41,10 +41,10 @@ const Swap = () => {
                         <span className="copy" aria-hidden="true">Text copied to clipboard!</span>
                     </p>
                 <span className="warning">Warning! Using your new wallet is mandatory! New tokens will be charged to your new wallet!</span><br />
-                <span className="comment">Use our <a className="a-link" href="https://wallet.pegascoin.com" target="_blank" rel="nofollow noopener">wallet</a> to transfer coins.</span><br />
+                <span className="comment">Use our <a className="a-link" href="https://wallet.pegascoin.com" target="_blank" rel="nofollow noopener noreferrer">wallet</a> to transfer coins.</span><br />
                 <span className="comment">You should see the transfered coins at PGC Swap Balance Page in 30 minutes.</span>
             </li>
-            <li className="li"><a className="a-link" href="https://metamask.io/download.html" target="_blank" rel="nofollow noopener">Install</a> the <img className="metamask-icon" src="/images/metamask.svg" width="25" height="25"/> <span className="orange-span">Metamask</span> extension to your browser.</li>
+            <li className="li"><a className="a-link" href="https://metamask.io/download.html" target="_blank" rel="nofollow noopener noreferrer">Install</a> the <img className="metamask-icon" src="/images/metamask.svg" width="25" height="25" alt="metamask"/> <span className="orange-span">Metamask</span> extension to your browser.</li>
             <li className="li"><span className="a-link">Import</span> your wallet to Metamask.</li>
             <li className="li"><span className="a-link">Add</span> the Binance Smart Chain to the wallet.</li>
             <li className="li">Go to your PGC Swap Balance Page.</li>
